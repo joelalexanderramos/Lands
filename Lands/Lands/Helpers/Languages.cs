@@ -192,5 +192,10 @@
         {
             get { return Resource.LogOut; }
         }
+
+        public static string RegisterTitle
+        {
+            get { return Resource.RegisterTitle; }
+        }
     }
 }

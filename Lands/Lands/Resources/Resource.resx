@@ -258,4 +258,7 @@
   <data name="LogOut" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="RegisterTitle" xml:space="preserve">
+    <value>Register New User</value>
+  </data>
 </root>

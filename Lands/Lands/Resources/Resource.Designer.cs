@@ -328,5 +328,11 @@ namespace Lands.Resources {
                 return ResourceManager.GetString("LogOut", resourceCulture);
             }
         }
+        
+        public static string RegisterTitle {
+            get {
+                return ResourceManager.GetString("RegisterTitle", resourceCulture);
+            }
+        }
     }
 }

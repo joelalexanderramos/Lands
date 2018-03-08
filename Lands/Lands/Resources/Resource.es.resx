@@ -258,4 +258,7 @@
   <data name="LogOut" xml:space="preserve">
     <value>Cerrar sesión</value>
   </data>
+  <data name="RegisterTitle" xml:space="preserve">
+    <value>Registrar Nuevo Usuario</value>
+  </data>
 </root>
