@@ -15,7 +15,18 @@
         {
             InitializeComponent();
 
-            this.MainPage = new NavigationPage(new LoginPage());
+            if (Settings.IsRemembered == "true")
+            {
+                var mainViewModel = MainViewModel.GetInstance();
+                mainViewModel.Token = Settings.Token;
+                mainViewModel.TokenType = Settings.TokenType;
+                mainViewModel.Lands = new LandsViewModel();
+                Application.Current.MainPage = new MasterPage();
+            }
+            else
+            {
+                this.MainPage = new NavigationPage(new LoginPage());
+            }
         }
         #endregion
 

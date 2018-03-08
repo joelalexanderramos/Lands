@@ -139,7 +139,14 @@
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
             mainViewModel.Lands = new LandsViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+            Application.Current.MainPage = new MasterPage();
+
+            if (this.IsRemembered)
+            {
+                Settings.Token = token.AccessToken;
+                Settings.TokenType = token.TokenType;
+                Settings.IsRemembered = "true";
+            }
 
             this.IsRunning = false;
             this.IsEnabled = true;
