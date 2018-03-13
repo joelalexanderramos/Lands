@@ -1,12 +1,14 @@
 ﻿namespace Lands.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
+    using System;
     using System.Windows.Input;
+    using Domain;
+    using GalaSoft.MvvmLight.Command;
+    using Helpers;
+    using Models;
     using Services;
     using Views;
     using Xamarin.Forms;
-    using Helpers;
-    using System;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -148,9 +150,11 @@
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
-            mainViewModel.User = user;
 
-            this.dataService.DeleteAllAndInsert(user);
+            var userLocal = this.ToUserLocal(user);
+            mainViewModel.User = userLocal;
+
+            this.dataService.DeleteAllAndInsert(userLocal);
 
             if (this.IsRemembered)
             {
@@ -166,6 +170,20 @@
 
             this.Email = string.Empty;
             this.Password = string.Empty;
+        }
+
+        private UserLocal ToUserLocal(User user)
+        {
+            return new UserLocal
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                ImagePath = user.ImagePath,
+                LastName = user.LastName,
+                Telephone = user.Telephone,
+                UserId = user.UserId,
+                UserTypeId = user.UserTypeId,
+            };
         }
 
         public ICommand RegisterCommand

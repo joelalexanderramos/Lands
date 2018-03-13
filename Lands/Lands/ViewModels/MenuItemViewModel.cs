@@ -2,18 +2,31 @@
 {
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
+    using Helpers;
+    using Models;
+    using Services;
     using Views;
     using Xamarin.Forms;
-    using Helpers;
 
     public class MenuItemViewModel
     {
+        #region Services
+        private DataService dataService;
+        #endregion
+
         #region Properties
         public string Icon { get; set; }
 
         public string Title { get; set; }
 
         public string PageName { get; set; }
+        #endregion
+
+        #region Contructors
+        public MenuItemViewModel()
+        {
+            this.dataService = new DataService();
+        }
         #endregion
 
         #region Commands
@@ -31,6 +44,7 @@
             {
                 Settings.Token = string.Empty;
                 Settings.TokenType = string.Empty;
+                this.dataService.DeleteAll<UserLocal>();
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.Token = string.Empty;
                 mainViewModel.TokenType = string.Empty;

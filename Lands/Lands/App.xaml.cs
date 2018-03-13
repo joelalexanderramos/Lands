@@ -28,25 +28,25 @@
 
             this.dataService = new DataService();
 
-            //if (string.IsNullOrEmpty(Settings.Token))
-            //{
+            if (string.IsNullOrEmpty(Settings.Token))
+            {
                 this.MainPage = new NavigationPage(new LoginPage());
-            //}
-            //else
-            //{
-            //    var mainViewModel = MainViewModel.GetInstance();
-            //    mainViewModel.Token = Settings.Token;
-            //    mainViewModel.TokenType = Settings.TokenType;
+            }
+            else
+            {
+                var mainViewModel = MainViewModel.GetInstance();
+                mainViewModel.Token = Settings.Token;
+                mainViewModel.TokenType = Settings.TokenType;
 
-            //    var user = this.dataService.First<UserLocal>(false);
-            //    if (user != null)
-            //    {
-            //        mainViewModel.User = user;
-            //    }
+                var user = this.dataService.First<UserLocal>(false);
+                if (user != null)
+                {
+                    mainViewModel.User = user;
+                }
 
-            //    mainViewModel.Lands = new LandsViewModel();
-            //    Application.Current.MainPage = new MasterPage();
-            //}
+                mainViewModel.Lands = new LandsViewModel();
+                Application.Current.MainPage = new MasterPage();
+            }
         }
         #endregion
 
