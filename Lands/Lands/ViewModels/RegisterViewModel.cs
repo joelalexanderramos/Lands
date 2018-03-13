@@ -211,7 +211,7 @@
                 LastName = this.LastName,
                 Telephone = this.Telephone,
                 ImageArray = imageArray,
-                UserTypeId = 1,
+                UserTypeId = 1, // Local
                 Password = this.Password,
             };
 
@@ -302,4 +302,5 @@
             }
         }
         #endregion
-    }}
+    }
+}
