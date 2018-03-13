@@ -12,11 +12,7 @@
         protected void Application_Start()
         {
             Database.SetInitializer(
-<<<<<<< HEAD
-                new MigrateDatabaseToLatestVersion<LocalDataContext, 
-=======
                 new MigrateDatabaseToLatestVersion<Models.LocalDataContext, 
->>>>>>> Group1
                 Migrations.Configuration>());
             this.CheckRolesAndSuperUser();
             AreaRegistration.RegisterAllAreas();
