@@ -20,15 +20,15 @@
                         <TapGestureRecognizer Command="{Binding ChangeImageCommand}" />
                     </controls:CircleImage.GestureRecognizers>
                 </controls:CircleImage>
-                <ActivityIndicator
-                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
-                </ActivityIndicator>
                 <Label 
                     HorizontalOptions="Center" 
                     FontSize="Small" 
                     Text="{i18n:Translate ChangeImage}" 
                     TextColor="Black">
                 </Label>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                </ActivityIndicator>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

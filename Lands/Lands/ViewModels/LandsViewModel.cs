@@ -72,7 +72,6 @@
             }
 
             var apiLands = Application.Current.Resources["APILands"].ToString();
-
             var response = await this.apiService.GetList<Land>(
                 apiLands,
                 "/rest", 

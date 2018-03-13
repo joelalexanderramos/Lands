@@ -11,6 +11,10 @@ namespace Lands.Backend.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
+<<<<<<< HEAD
+=======
+            ContextKey = "Lands.Backend.Models.LocalDataContext";
+>>>>>>> Group1
         }
 
         protected override void Seed(Lands.Backend.Models.LocalDataContext context)

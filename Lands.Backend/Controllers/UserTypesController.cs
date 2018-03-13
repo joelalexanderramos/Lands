@@ -1,5 +1,6 @@
 ﻿namespace Lands.Backend.Controllers
 {
+<<<<<<< HEAD
     using Backend.Models;
     using Domain;
     using System.Data.Entity;
@@ -7,6 +8,16 @@
     using System.Threading.Tasks;
     using System.Web.Mvc;
 
+=======
+    using System.Data.Entity;
+    using System.Threading.Tasks;
+    using System.Net;
+    using System.Web.Mvc;
+    using Lands.Backend.Models;
+    using Lands.Domain;
+
+    [Authorize(Roles = "Admin")]
+>>>>>>> Group1
     public class UserTypesController : Controller
     {
         private LocalDataContext db = new LocalDataContext();

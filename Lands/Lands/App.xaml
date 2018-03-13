@@ -5,7 +5,6 @@
     xmlns:infra="clr-namespace:Lands.Infrastructure"
     x:Class="Lands.App">
 	<Application.Resources>
-
 		<!-- Application resource dictionary -->
         <ResourceDictionary>
 
@@ -17,6 +16,5 @@
             <x:String x:Key="APISecurity">http://landsapi1.azurewebsites.net</x:String>
 
         </ResourceDictionary>
-
 	</Application.Resources>
 </Application>
