@@ -36,7 +36,5 @@ namespace Lands.Droid.Implementations
 
             }
         }
-
-        //ISQLitePlatform IConfig.Platform => throw new System.NotImplementedException();
     }
 }
