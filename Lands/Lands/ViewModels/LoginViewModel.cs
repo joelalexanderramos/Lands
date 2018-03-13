@@ -1,17 +1,20 @@
 ﻿namespace Lands.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
-    using System.Windows.Input;
+    using Helpers;
+    using Domain;
     using Services;
+    using System;
+    using System.Windows.Input;
     using Views;
     using Xamarin.Forms;
-    using Helpers;
-    using System;
+    using Models;
 
     public class LoginViewModel : BaseViewModel
     {
         #region Services
         private ApiService apiService;
+        private DataService dataService;
         #endregion
 
         #region Attributes
@@ -57,6 +60,7 @@
         public LoginViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataService();
 
             this.IsRemembered = true;
             this.IsEnabled = true;
@@ -143,15 +147,17 @@
                 "/Users/GetUserByEmail", 
                 this.Email);
 
+            var userLocal = this.ToUserLocal(user);
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
-            mainViewModel.User = user;
+            mainViewModel.User = userLocal;
 
             if (this.IsRemembered)
             {
                 Settings.Token = token.AccessToken;
                 Settings.TokenType = token.TokenType;
+                this.dataService.DeleteAllAndInsert(userLocal);
             }
 
             mainViewModel.Lands = new LandsViewModel();
@@ -162,6 +168,20 @@
 
             this.Email = string.Empty;
             this.Password = string.Empty;
+        }
+
+        private UserLocal ToUserLocal(User user)
+        {
+            return new UserLocal
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                ImagePath = user.ImagePath,
+                LastName = user.LastName,
+                Telephone = user.Telephone,
+                UserId = user.UserId,
+                UserTypeId = user.UserTypeId,
+            };
         }
 
         public ICommand RegisterCommand
