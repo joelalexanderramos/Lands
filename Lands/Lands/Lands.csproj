@@ -21,11 +21,7 @@
     <PackageReference Include="SQLite.Net-PCL" Version="3.1.1" />
     <PackageReference Include="SQLite.Net.Async-PCL" Version="3.1.1" />
     <PackageReference Include="SQLiteNetExtensions" Version="2.0.0-alpha2" />
-<<<<<<< HEAD
-    <PackageReference Include="SQLiteNetExtensions.Async" Version="2.0.0-alpha2" />
-=======
     <PackageReference Include="SQLiteNetExtensions.Async" Version="2.0.0-alpha2" />    
->>>>>>> 3462700b5719a71fcb19674c0884799c8e9ee3c6
   </ItemGroup>
 
   <ItemGroup>
