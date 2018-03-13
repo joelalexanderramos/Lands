@@ -3,10 +3,16 @@
     using Xamarin.Forms;
     using Views;
     using ViewModels;
+    using Models;
     using Helpers;
+    using Services;
 
     public partial class App : Application
 	{
+        #region Services
+        private DataService dataService;
+        #endregion
+
         #region Properties
         public static NavigationPage Navigator
         {
@@ -20,18 +26,27 @@
         {
             InitializeComponent();
 
-            if (string.IsNullOrEmpty(Settings.Token))
-            {
+            this.dataService = new DataService();
+
+            //if (string.IsNullOrEmpty(Settings.Token))
+            //{
                 this.MainPage = new NavigationPage(new LoginPage());
-            }
-            else
-            {
-                var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.Token = Settings.Token;
-                mainViewModel.TokenType = Settings.TokenType;
-                mainViewModel.Lands = new LandsViewModel();
-                Application.Current.MainPage = new MasterPage();
-            }
+            //}
+            //else
+            //{
+            //    var mainViewModel = MainViewModel.GetInstance();
+            //    mainViewModel.Token = Settings.Token;
+            //    mainViewModel.TokenType = Settings.TokenType;
+
+            //    var user = this.dataService.First<UserLocal>(false);
+            //    if (user != null)
+            //    {
+            //        mainViewModel.User = user;
+            //    }
+
+            //    mainViewModel.Lands = new LandsViewModel();
+            //    Application.Current.MainPage = new MasterPage();
+            //}
         }
         #endregion
 

@@ -1,7 +1,8 @@
-﻿[assembly: Xamarin.Forms.Dependency(typeof(Lands.Droid.Implementations.Config))]
+﻿[assembly: Xamarin.Forms.Dependency(typeof(Lands.iOS.Implementations.Config))]
 
-namespace Lands.Droid.Implementations
+namespace Lands.iOS.Implementations
 {
+    using System;
     using Interfaces;
     using SQLite.Net.Interop;
 
@@ -16,7 +17,8 @@ namespace Lands.Droid.Implementations
             {
                 if (string.IsNullOrEmpty(directoryDB))
                 {
-                    directoryDB = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                    var directory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+                    directoryDB = System.IO.Path.Combine(directory, "..", "Library");
                 }
 
                 return directoryDB;
@@ -29,14 +31,11 @@ namespace Lands.Droid.Implementations
             {
                 if (platform == null)
                 {
-                    platform = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
+                    platform = new SQLite.Net.Platform.XamarinIOS.SQLitePlatformIOS();
                 }
 
                 return platform;
-
             }
         }
-
-        ISQLitePlatform IConfig.Platform => throw new System.NotImplementedException();
     }
 }

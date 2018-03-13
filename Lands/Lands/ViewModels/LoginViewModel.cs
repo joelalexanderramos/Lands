@@ -12,6 +12,7 @@
     {
         #region Services
         private ApiService apiService;
+        private DataService dataService;
         #endregion
 
         #region Attributes
@@ -57,6 +58,7 @@
         public LoginViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataService();
 
             this.IsRemembered = true;
             this.IsEnabled = true;
@@ -147,6 +149,8 @@
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
             mainViewModel.User = user;
+
+            this.dataService.DeleteAllAndInsert(user);
 
             if (this.IsRemembered)
             {

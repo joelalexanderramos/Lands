@@ -91,6 +91,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Implementations\Config .cs" />
     <Compile Include="Implementations\Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -138,6 +139,9 @@
       <Version>11.0.1</Version>
     </PackageReference>
     <PackageReference Include="SQLite.Net-PCL">
+      <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="SQLite.Net.Async-PCL">
       <Version>3.1.1</Version>
     </PackageReference>
     <PackageReference Include="SQLiteNetExtensions">
