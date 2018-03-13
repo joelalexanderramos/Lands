@@ -1,10 +1,37 @@
-﻿using System;
-namespace Lands.Droid.Implementations
+﻿namespace Lands.Droid.Implementations
 {
-    public class Config
+    using Interfaces;
+
+    public class Config : IConfig
     {
-        public Config()
+        private string directoryDB;
+        private ISQLitePlatform platform;
+
+        public string DirectoryDB
         {
+            get
+            {
+                if (string.IsNullOrEmpty(directoryDB))
+                {
+                    directoryDB = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+                }
+
+                return directoryDB;
+            }
+        }
+
+        public ISQLitePlatform Platform
+        {
+            get
+            {
+                if (platform == null)
+                {
+                    platform = new SQLite.Net.Platform.XamarinAndroid.SQLitePlatformAndroid();
+                }
+
+                return platform;
+
+            }
         }
     }
 }

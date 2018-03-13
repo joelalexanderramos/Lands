@@ -1,10 +1,11 @@
-﻿using System;
-namespace Lands.Models
+﻿namespace Lands.Models
 {
-    public class UserLocal
+    using Domain;
+    using SQLite.Net.Attributes;
+
+    public class UserLocal : User
     {
-        public UserLocal()
-        {
-        }
+        [PrimaryKey, AutoIncrement]
+        public int UserLocalId { get; set; }
     }
 }
