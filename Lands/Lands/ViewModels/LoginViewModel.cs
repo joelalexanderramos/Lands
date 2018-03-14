@@ -141,7 +141,12 @@
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token;
             mainViewModel.Lands = new LandsViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
+            // De esta manera, presente el boton de Back
+            //await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
+            // no presenta el boton de Back
+            Application.Current.MainPage = new MasterPage();
 
             this.IsRunning = false;
             this.IsEnabled = true;
