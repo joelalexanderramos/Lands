@@ -4,9 +4,15 @@
     using Views;
     using ViewModels;
     using Helpers;
+    using Services;
+    using Models;
 
     public partial class App : Application
 	{
+        #region Services
+        private DataService dataService;
+        #endregion
+
         #region Properties
         public static NavigationPage Navigator
         {
@@ -29,6 +35,10 @@
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.Token = Settings.Token;
                 mainViewModel.TokenType = Settings.TokenType;
+
+                this.dataService = new DataService();
+                var user = this.dataService.First<UserLocal>(false);
+                mainViewModel.User = user;
                 mainViewModel.Lands = new LandsViewModel();
                 Application.Current.MainPage = new MasterPage();
             }

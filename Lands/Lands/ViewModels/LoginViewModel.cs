@@ -7,11 +7,14 @@
     using Xamarin.Forms;
     using Helpers;
     using System;
+    using Domain;
+    using Models;
 
     public class LoginViewModel : BaseViewModel
     {
         #region Services
         private ApiService apiService;
+        private DataService dataService;
         #endregion
 
         #region Attributes
@@ -57,6 +60,7 @@
         public LoginViewModel()
         {
             this.apiService = new ApiService();
+            this.dataService = new DataService();
 
             this.IsRemembered = true;
             this.IsEnabled = true;
@@ -150,7 +154,9 @@
 
             if (user != null)
             {
-                mainViewModel.User = user;
+                var userLocal = this.ToUserLocal(user);
+                mainViewModel.User = userLocal;
+                this.dataService.DeleteAllAndInsert(userLocal);
             }
 
             if (this.IsRemembered)
@@ -167,6 +173,20 @@
 
             this.Email = string.Empty;
             this.Password = string.Empty;
+        }
+
+        private UserLocal ToUserLocal(User user)
+        {
+            return new UserLocal
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                ImagePath = user.ImagePath,
+                LastName = user.LastName,
+                Telephone = user.Telephone,
+                UserId = user.UserId,
+                UserTypeId = user.UserTypeId,
+            };
         }
 
         public ICommand RegisterCommand
