@@ -60,7 +60,7 @@
             this.IsRemembered = true;
             this.IsEnabled = true;
 
-            this.Email = "jzuluaga55@hotmail.com";
+            this.Email = "joel.ramos@outlook.com";
             this.Password = "123456";
         }
         #endregion
@@ -139,9 +139,16 @@
             }
 
             var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.Token = token;
-            mainViewModel.Lands = new LandsViewModel();
+            mainViewModel.Token = token.AccessToken;
+            mainViewModel.TokenType = token.TokenType;
 
+            if(this.IsRemembered) { 
+                Settings.Token = token.AccessToken;
+                Settings.TokenType = token.TokenType;
+            }
+
+            mainViewModel.Lands = new LandsViewModel();
+            
             // De esta manera, presente el boton de Back
             //await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
 

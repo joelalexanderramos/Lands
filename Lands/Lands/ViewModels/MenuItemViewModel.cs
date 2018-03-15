@@ -4,6 +4,7 @@
     using System.Windows.Input;
     using Xamarin.Forms;
     using Views;
+    using Lands.Helpers;
 
     public class MenuItemViewModel
     {
@@ -26,6 +27,15 @@
         {
             if (this.PageName=="LoginPage")
             {
+                // Al darle logout, limpiar variables de persistencia
+                Settings.Token = string.Empty;
+                Settings.TokenType = string.Empty;
+
+                // También limpiar los valores de la MainViewModel
+                var mainViewModel = MainViewModel.GetInstance();
+                mainViewModel.Token = string.Empty;
+                mainViewModel.TokenType = string.Empty;
+
                 Application.Current.MainPage = new LoginPage();
             }            
         }
