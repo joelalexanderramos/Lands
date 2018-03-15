@@ -22,7 +22,7 @@
             }
         }
 
-        private  void Navigate()
+        private void Navigate()
         {
             if (this.PageName=="LoginPage")
             {
