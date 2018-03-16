@@ -126,7 +126,7 @@
             }
 
             var token = await this.apiService.GetToken(
-                "http://landsapi1.azurewebsites.net", 
+                Application.Current.Resources["APISecurity"].ToString(),
                 this.Email, 
                 this.Password);
 

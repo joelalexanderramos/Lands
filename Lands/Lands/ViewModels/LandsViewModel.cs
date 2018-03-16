@@ -72,7 +72,7 @@
             }
 
             var response = await this.apiService.GetList<Land>(
-                "http://restcountries.eu",
+                Application.Current.Resources["APILands"].ToString(),
                 "/rest", 
                 "/v2/all");
 
