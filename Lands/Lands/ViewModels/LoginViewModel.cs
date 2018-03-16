@@ -6,6 +6,7 @@
     using Views;
     using Xamarin.Forms;
     using Helpers;
+    using System;
 
     public class LoginViewModel : BaseViewModel
     {
@@ -66,6 +67,20 @@
         #endregion
 
         #region Commands
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(Register);
+            }
+        }
+
+        private async void Register()
+        {
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+        }
+
         public ICommand LoginCommand
         {
             get

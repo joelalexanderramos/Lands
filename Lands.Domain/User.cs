@@ -34,7 +34,7 @@
                        
         public int UserTypeId { get; set; }
 
-        [JsonIgnore]
+        [JsonIgnore] // por un tema de serializacion
         public virtual UserType UserType { get; set; }
 
         [NotMapped]
