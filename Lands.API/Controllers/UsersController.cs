@@ -35,6 +35,18 @@
             return Ok(user);
         }
 
+        [ResponseType(typeof(User))]
+        public async Task<IHttpActionResult> GetUser(string email)
+        {
+            User user = await db.Users.FindAsync(email);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUser(int id, User user)
@@ -90,6 +102,21 @@
 
             return CreatedAtRoute("DefaultApi", new { id = model.UserId }, model);
         }
+
+        //private User ToUser(User model)
+        //{
+        //    return new User
+        //    {
+        //        Email = model.Email,
+        //        FirstName = model.FirstName,
+        //        ImagePath = model.ImagePath,
+        //        LastName = model.LastName,
+        //        Telephone = model.Telephone,
+        //        UserId = model.UserId,
+        //        UserType = model.UserType,
+        //        UserTypeId = model.UserTypeId,
+        //    };
+        //}
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]

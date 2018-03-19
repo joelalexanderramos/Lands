@@ -32,7 +32,7 @@
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
                        
-        public int UserTypeId { get; set; }
+        public int? UserTypeId { get; set; }
 
         [JsonIgnore] // por un tema de serializacion
         public virtual UserType UserType { get; set; }
