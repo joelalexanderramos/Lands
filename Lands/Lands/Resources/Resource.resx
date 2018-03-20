@@ -257,7 +257,7 @@
   </data>
   <data name="Statics" xml:space="preserve">
     <value>Statics</value>
-  </data>  
+  </data>
   <data name="RegisterTitle" xml:space="preserve">
     <value>Register New User</value>
   </data>
@@ -323,5 +323,8 @@
   </data>
   <data name="FromCamera" xml:space="preserve">
     <value>From camera</value>
-  </data>  
+  </data>
+  <data name="Hi" xml:space="preserve">
+    <value>Hello</value>
+  </data>
 </root>

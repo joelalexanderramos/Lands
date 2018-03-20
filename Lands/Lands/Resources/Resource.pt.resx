@@ -258,7 +258,6 @@
   <data name="Statics" xml:space="preserve">
     <value>Estatísticas</value>
   </data>
-  
   <data name="RegisterTitle" xml:space="preserve">
     <value>Registre Novo Usuário</value>
   </data>
@@ -325,6 +324,7 @@
   <data name="FromCamera" xml:space="preserve">
     <value>Da câmera</value>
   </data>
-  
-  
+  <data name="Hi" xml:space="preserve">
+    <value>Olá</value>
+  </data>
 </root>

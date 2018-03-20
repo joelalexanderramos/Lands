@@ -302,5 +302,10 @@
         {
             get { return Resource.FromCamera; }
         }
+
+        public static string Hi
+        {
+            get { return Resource.Hi; }
+        }
     }
 }

@@ -3,7 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using Lands.Helpers;
+    using Domain;
+    using Helpers;
     using Models;
 
     public class MainViewModel
@@ -24,6 +25,8 @@
             get;
             set;
         }
+
+        public User User { get; set; }
 
         #endregion
 

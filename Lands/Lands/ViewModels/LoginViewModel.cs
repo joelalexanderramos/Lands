@@ -125,6 +125,8 @@
                 return;
             }
 
+            var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
+
             var token = await this.apiService.GetToken(
                 Application.Current.Resources["APISecurity"].ToString(),
                 this.Email, 
@@ -153,9 +155,18 @@
                 return;
             }
 
+            var user = await this.apiService.GetUserByEmail(
+                apiSecurity,
+                "/api",
+                "/Users/GetUserByEmail",
+                token.TokenType,
+                token.AccessToken,
+                this.Email);
+
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
+            mainViewModel.User = user;
 
             if(this.IsRemembered) { 
                 Settings.Token = token.AccessToken;
