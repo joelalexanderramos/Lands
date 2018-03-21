@@ -163,10 +163,12 @@
                 token.AccessToken,
                 this.Email);
 
+            var userLocal = Helpers.Converter.ToUserLocal(user);
+
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token.AccessToken;
             mainViewModel.TokenType = token.TokenType;
-            mainViewModel.User = user;
+            mainViewModel.User = userLocal;
 
             if(this.IsRemembered) { 
                 Settings.Token = token.AccessToken;

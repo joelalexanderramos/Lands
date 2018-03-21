@@ -26,7 +26,7 @@
             set;
         }
 
-        public User User { get; set; }
+        public UserLocal User { get; set; }
 
         #endregion
 
