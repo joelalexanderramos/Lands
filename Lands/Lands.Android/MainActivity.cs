@@ -3,7 +3,9 @@
     using Android.App;
     using Android.Content.PM;
     using Android.OS;
+    using Android.Runtime;
     using FFImageLoading.Forms.Droid;
+    using Plugin.Permissions;
 
     [Activity(Label = "Lands", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
@@ -19,5 +21,15 @@
             CachedImageRenderer.Init(true);
             LoadApplication(new App());
         }
+
+        // Fixing Camera Error on Android
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(
+               requestCode,
+               permissions,
+               grantResults);
+        }
+
     }
 }
