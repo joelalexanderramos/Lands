@@ -7,8 +7,12 @@
     using Helpers;
     using Models;
 
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
+        #region Attributes
+        private UserLocal user;
+        #endregion
+
         #region Properties
         public List<Land> LandsList
         {
@@ -26,7 +30,11 @@
             set;
         }
 
-        public UserLocal User { get; set; }
+        public UserLocal User
+        {
+            get { return this.user; }
+            set { SetValue(ref this.user, value); }
+        }
 
         #endregion
 
@@ -50,6 +58,12 @@
         }
 
         public RegisterViewModel Register
+        {
+            get;
+            set;
+        }
+
+        public MyProfileViewModel MyProfile
         {
             get;
             set;
