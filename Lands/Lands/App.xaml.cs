@@ -6,6 +6,7 @@
     using ViewModels;
     using Services;
     using Lands.Models;
+    using System;
 
     public partial class App : Application
 	{
@@ -20,22 +21,30 @@
 		{
 			InitializeComponent();
 
-            if (string.IsNullOrEmpty(Settings.TokenType))
+            if (Settings.IsRemembered == "true")
             {
-                this.MainPage = new NavigationPage(new LoginPage());
+                var dataService = new DataService();
+                var token = dataService.First<TokenResponse>(false);
+
+                // Si el token es valido
+                if(token != null && token.Expires > DateTime.Now)
+                {
+                    var user = dataService.First<UserLocal>(false);
+                    var mainViewModel = MainViewModel.GetInstance();
+                    mainViewModel.Token = token;
+                    mainViewModel.User = user;
+                    mainViewModel.Lands = new LandsViewModel();
+
+                    this.MainPage = new MasterPage();
+                }
+                else
+                {
+                    this.MainPage = new NavigationPage(new LoginPage());
+                }
             }
             else
             {
-                var dataService = new DataService();
-                var user = dataService.First<UserLocal>(false);
-
-                var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.Token = Settings.Token;
-                mainViewModel.TokenType = Settings.TokenType;
-                mainViewModel.User = user;
-                mainViewModel.Lands = new LandsViewModel();
-
-                this.MainPage = new MasterPage();
+                this.MainPage = new NavigationPage(new LoginPage());
             }
             
             //this.MainPage = new MasterPage();

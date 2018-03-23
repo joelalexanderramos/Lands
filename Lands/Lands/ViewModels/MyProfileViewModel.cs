@@ -3,6 +3,7 @@
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using Helpers;
+    using Views;
     using Models;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
@@ -63,19 +64,19 @@
         #endregion
 
         #region Commands
-        //public ICommand ChangePasswordCommand
-        //{
-        //    get
-        //    {
-        //        return new RelayCommand(ChangePassword);
-        //    }
-        //}
+        public ICommand ChangePasswordCommand
+        {
+            get
+            {
+                return new RelayCommand(ChangePassword);
+            }
+        }
 
-        //private async void ChangePassword()
-        //{
-        //    MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
-        //    await App.Navigator.PushAsync(new ChangePasswordPage());
-        //}
+        private async void ChangePassword()
+        {
+            MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
+            await App.Navigator.PushAsync(new ChangePasswordPage());
+        }
 
         public ICommand ChangeImageCommand
         {
@@ -218,8 +219,8 @@
                 apiSecurity,
                 "/api",
                 "/Users",
-                MainViewModel.GetInstance().TokenType,
-                MainViewModel.GetInstance().Token,
+                MainViewModel.GetInstance().Token.TokenType,
+                MainViewModel.GetInstance().Token.AccessToken,
                 userDomain);
 
             if (!response.IsSuccess)
@@ -237,8 +238,8 @@
                 apiSecurity,
                 "/api",
                 "/Users/GetUserByEmail",
-                MainViewModel.GetInstance().TokenType,
-                MainViewModel.GetInstance().Token,
+                MainViewModel.GetInstance().Token.TokenType,
+                MainViewModel.GetInstance().Token.AccessToken,
                 this.User.Email);
 
             var userLocal = Converter.ToUserLocal(userApi);

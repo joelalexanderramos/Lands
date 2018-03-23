@@ -122,7 +122,7 @@
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    connection.Message,
+                    Languages.LoginError,
                     Languages.Accept);
                 return;
             }
@@ -166,18 +166,23 @@
                 this.Email);
 
             var userLocal = Helpers.Converter.ToUserLocal(user);
+            userLocal.Password = this.Password;
 
             var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.Token = token.AccessToken;
-            mainViewModel.TokenType = token.TokenType;
+            mainViewModel.Token = token;
             mainViewModel.User = userLocal;
 
             if(this.IsRemembered) { 
-                Settings.Token = token.AccessToken;
-                Settings.TokenType = token.TokenType;
-
-                this.dataService.DeleteAllAndInsert(userLocal);
+                // Guardar en persistencia
+                Settings.IsRemembered = "true";
             }
+            else
+            {
+                Settings.IsRemembered = "false";
+            }
+
+            this.dataService.DeleteAllAndInsert(userLocal);
+            this.dataService.DeleteAllAndInsert(token);
 
             mainViewModel.Lands = new LandsViewModel();
             

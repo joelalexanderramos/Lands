@@ -1,9 +1,7 @@
 ﻿namespace Lands.ViewModels
 {
-    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using Domain;
     using Helpers;
     using Models;
 
@@ -20,9 +18,7 @@
             set;
         }
 
-        public string Token { get; set; }
-
-        public string TokenType { get; set; }
+        public TokenResponse Token { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menus
         {
@@ -64,6 +60,12 @@
         }
 
         public MyProfileViewModel MyProfile
+        {
+            get;
+            set;
+        }
+
+        public ChangePasswordViewModel ChangePassword
         {
             get;
             set;

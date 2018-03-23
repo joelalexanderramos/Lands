@@ -30,13 +30,12 @@
             if (this.PageName=="LoginPage")
             {
                 // Al darle logout, limpiar variables de persistencia
-                Settings.Token = string.Empty;
-                Settings.TokenType = string.Empty;
+                Settings.IsRemembered = "false";
 
                 // También limpiar los valores de la MainViewModel
                 var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.Token = string.Empty;
-                mainViewModel.TokenType = string.Empty;
+                mainViewModel.Token = null;
+                mainViewModel.User = null;
 
                 Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
