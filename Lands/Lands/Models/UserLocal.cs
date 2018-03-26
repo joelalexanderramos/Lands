@@ -4,7 +4,7 @@
 
     public class UserLocal
     {
-        [PrimaryKey]
+        //[PrimaryKey]
         public int UserId { get; set; }
 
         public string FirstName { get; set; }

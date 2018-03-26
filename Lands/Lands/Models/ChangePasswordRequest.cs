@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Lands.Models
+﻿namespace Lands.Models
 {
     public class ChangePasswordRequest
     {
@@ -10,9 +6,6 @@ namespace Lands.Models
 
         public string Email { get; set; }
 
-        public string NewPassword
-        {
-            get; set;
-        }
+        public string NewPassword { get; set; }        
     }
 }

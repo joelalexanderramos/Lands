@@ -7,7 +7,7 @@
     public class TokenResponse
     {
         #region Properties
-        [PrimaryKey, AutoIncrement]
+        //[PrimaryKey, AutoIncrement]
         public int TokenResponseId { get; set; }
 
         [JsonProperty(PropertyName = "access_token")]

@@ -340,7 +340,7 @@ namespace Lands.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The password can&apos;t be changed, please try latter..
+        ///   Looks up a localized string similar to The password can&apos;t be changed, please try later..
         /// </summary>
         public static string ErrorChangingPassword {
             get {
