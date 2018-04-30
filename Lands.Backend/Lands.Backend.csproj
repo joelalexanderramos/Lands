@@ -297,6 +297,7 @@
     <Content Include="Views\GroupTeams\Details.cshtml" />
     <Content Include="Views\GroupTeams\Edit.cshtml" />
     <Content Include="Views\GroupTeams\Index.cshtml" />
+    <Content Include="Views\Groups\AddTeam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

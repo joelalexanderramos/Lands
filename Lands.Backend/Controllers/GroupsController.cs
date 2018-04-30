@@ -6,15 +6,55 @@
     using System.Web.Mvc;
     using Models;
     using Domain;
+    using System.Linq;
+    using System.Collections.Generic;
 
     [Authorize(Roles ="Admin")]
     public class GroupsController : Controller
     {
-        private LocalDataContext db = new LocalDataContext();
+        private LocalDataContext db = new LocalDataContext();       
 
         public async Task<ActionResult> AddTeam (int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var group = await db.Groups.FindAsync(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+
+            var groupTeam = new GroupTeam
+            {
+                GroupId = group.GroupId,                
+            };
+
+            var teams = new List<Team>();
+            foreach (var team in group.GroupTeams)
+            {
+                teams.Add(team.Team);
+            }
+
+            ViewBag.TeamId = new SelectList(db.Teams.OrderBy(t => t.Name), "TeamId", "Name");
+
+            return View(groupTeam);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddTeam(GroupTeam groupTeam)
+        {
+            if (ModelState.IsValid)
+            {
+                db.GroupTeams.Add(groupTeam);
+                await db.SaveChangesAsync();
+                return RedirectToAction(string.Format("Details/{0}", groupTeam.GroupId));
+            }
+
+            ViewBag.TeamId = new SelectList(db.Teams.OrderBy(t => t.Name), "TeamId", "Name", groupTeam.TeamId);
+            return View(groupTeam);
         }
 
         // GET: Groups
