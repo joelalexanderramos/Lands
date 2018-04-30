@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,5 +21,8 @@ namespace Lands.Domain
 
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<GroupTeam> GroupTeams { get; set; }
     }
 }
