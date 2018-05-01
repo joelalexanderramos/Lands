@@ -12,7 +12,26 @@
     [Authorize(Roles ="Admin")]
     public class GroupsController : Controller
     {
-        private LocalDataContext db = new LocalDataContext();       
+        private LocalDataContext db = new LocalDataContext();
+
+        public async Task<ActionResult> DeleteTeam(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var groupTeam = await db.GroupTeams.FindAsync(id);
+
+            if (groupTeam == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.GroupTeams.Remove(groupTeam);
+            await db.SaveChangesAsync();
+            return RedirectToAction(string.Format("Details/{0}", groupTeam.GroupId));
+        }
 
         public async Task<ActionResult> AddTeam (int? id)
         {
